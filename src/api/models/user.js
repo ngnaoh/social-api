@@ -75,7 +75,7 @@ UserModel.method({
   },
   async verificationChecks(options) {
     const { phone, code } = options;
-    return await TwilioClient.verify.v2
+    return TwilioClient.verify.v2
       .services(verifySid)
       .verificationChecks.create({ to: `+${phone}`, code });
   },
@@ -86,14 +86,14 @@ UserModel.method({
 
 UserModel.statics = {
   async createVerificationCode(phone) {
-    return await TwilioClient.verify.v2
+    return TwilioClient.verify.v2
       .services(verifySid)
       .verifications.create({ to: `+${phone}`, channel: "sms" });
   },
 
   async sendMessageCode(options) {
     const { phone, code } = options;
-    return await TwilioClient.messages.create({
+    return TwilioClient.messages.create({
       body: code,
       from: "+15706781048",
       to: `+${phone}`,
