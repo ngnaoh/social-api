@@ -2,7 +2,6 @@ const { Get, UpdateUser } = require("../service/user");
 const { Handler } = require("../../middleware/error");
 
 exports.load = async (req, res, next, id) => {
-  console.log(id);
   try {
     const user = await Get(id);
     req.locals = { user };
