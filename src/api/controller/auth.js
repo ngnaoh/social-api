@@ -1,5 +1,7 @@
 const { SignIn, VerifyOtp } = require("../service/auth");
 const { OK, CREATED } = require("../../utils/constants");
+const moment = require("moment");
+const { jwtExpirationInterval } = require("../../config/env-vars");
 
 exports.signIn = async (req, res, next) => {
   try {
@@ -16,7 +18,7 @@ exports.verifyOtp = async (req, res, next) => {
     const cookie = req?.cookies?.accessToken;
     if (!cookie) {
       res.cookie("accessToken", data.tokens.accessToken, {
-        maxAge: 900000,
+        maxAge: moment().add(jwtExpirationInterval, "minutes").unix(),
         httpOnly: true,
       });
     }

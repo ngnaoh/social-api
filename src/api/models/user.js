@@ -35,12 +35,7 @@ const UserModel = new Schema(
       trim: true,
       default: null,
     },
-    facebookPageToken: {
-      type: String,
-      trim: true,
-      default: null,
-    },
-    facebookPageId: {
+    instagramToken: {
       type: String,
       trim: true,
       default: null,
@@ -57,8 +52,7 @@ UserModel.method({
       "phone",
       "accessCode",
       "facebookToken",
-      "facebookPageToken",
-      "facebookPageId",
+      "instagramToken",
     ];
     fields.forEach((field) => {
       transformed[field] = this[field];
